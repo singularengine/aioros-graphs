@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsAotCompatible>true</IsAotCompatible>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>Writes Aioros.Graphs' paths as SVG path data in UTF-8, byte for byte as d3 writes them.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aioros.Graphs\Aioros.Graphs.csproj" />
+  </ItemGroup>
+</Project>

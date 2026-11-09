@@ -1,0 +1,12 @@
+bin/
+obj/
+*.user
+.vs/
+.idea/
+TestResults/
+artifacts/
+BenchmarkDotNet.Artifacts/
+.claude/
+node_modules/
+samples/Demo/out/*.json
+.dotnet

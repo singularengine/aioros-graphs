@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:10.0
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: sdk
+        run: dotnet --version > /dev/null 2>&1 || eng/install-sdk.sh
+      - name: Build
+        run: dotnet build Aioros.Graphs.slnx -c Release
+      - name: Test
+        run: dotnet test --solution Aioros.Graphs.slnx -c Release --no-build
+      - name: Pack
+        run: eng/pack.sh ci.${{ github.run_number }}

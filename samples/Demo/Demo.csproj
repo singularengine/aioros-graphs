@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>Aioros.Graphs.Demo</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Aioros.Graphs\Aioros.Graphs.csproj" />
+    <ProjectReference Include="..\..\src\Aioros.Graphs.Svg\Aioros.Graphs.Svg.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Aioros.Graphs.Demo.Tests" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Aioros.Graphs/Aioros.Graphs.csproj" />
+    <Project Path="src/Aioros.Graphs.Svg/Aioros.Graphs.Svg.csproj" />
+    <Project Path="src/Aioros.Graphs.Avalonia/Aioros.Graphs.Avalonia.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Aioros.Graphs.Tests/Aioros.Graphs.Tests.csproj" />
+    <Project Path="tests/Aioros.Graphs.ArchitectureTests/Aioros.Graphs.ArchitectureTests.csproj" />
+    <Project Path="tests/Aioros.Graphs.Demo.Tests/Aioros.Graphs.Demo.Tests.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/Demo/Demo.csproj" />
+  </Folder>
+  <Folder Name="/bench/">
+    <Project Path="bench/Aioros.Graphs.Benchmarks/Aioros.Graphs.Benchmarks.csproj" />
+  </Folder>
+</Solution>

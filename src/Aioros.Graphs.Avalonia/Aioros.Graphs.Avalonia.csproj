@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsAotCompatible>true</IsAotCompatible>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>Draws Aioros.Graphs' paths through Avalonia's StreamGeometryContext.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <ProjectReference Include="..\Aioros.Graphs\Aioros.Graphs.csproj" />
+  </ItemGroup>
+</Project>

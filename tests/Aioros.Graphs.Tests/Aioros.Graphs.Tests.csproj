@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Aioros.Graphs\Aioros.Graphs.csproj" />
+    <ProjectReference Include="..\..\src\Aioros.Graphs.Svg\Aioros.Graphs.Svg.csproj" />
+    <ProjectReference Include="..\..\src\Aioros.Graphs.Avalonia\Aioros.Graphs.Avalonia.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Golden\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsAotCompatible>true</IsAotCompatible>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>The Aioros chart engine: a C# port of the d3 modules charts need (arrays, scales, shapes, curves, paths, axes, colors, interpolators, number and time formats), with no UI dependency.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Aioros.Graphs.Tests" />
+  </ItemGroup>
+</Project>

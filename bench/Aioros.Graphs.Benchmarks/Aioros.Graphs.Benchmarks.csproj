@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" />
+    <ProjectReference Include="..\..\src\Aioros.Graphs\Aioros.Graphs.csproj" />
+    <ProjectReference Include="..\..\src\Aioros.Graphs.Svg\Aioros.Graphs.Svg.csproj" />
+  </ItemGroup>
+</Project>

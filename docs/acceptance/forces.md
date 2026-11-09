@@ -1,0 +1,23 @@
+# Forces
+
+d3-force's simulation and forces (`ForceSimulation`, `LinkForce`, `ManyBodyForce`, `CenterForce`, `CollideForce`,
+`XForce`, `YForce`), stepped explicitly instead of by a timer, with d3-quadtree's Barnes–Hut tree inside. Golden
+fixture: `Golden/force.json` from `tools/golden/cases/force.mjs` (d3-force 3.0.0 as d3 7.9.0 bundles it). Positions,
+velocities and alpha are compared **bit for bit** after 1, 10 and 300 ticks: every operation is IEEE arithmetic or a
+square root, and the only transcendental functions (the initial phyllotaxis's sine and cosine) are V8's fdlibm
+routines, ported in `JsTrig` (NUMBER-07).
+
+| ID | Criterion |
+|---|---|
+| FORCE-01 | Given the `initial` cases (0, 1, 7 and 2,000 nodes without positions; given positions with some NaN coordinates; fixed `fx`/`fy` for some nodes), when a `ForceSimulation` is created, then every node's x, y, vx and vy equal d3's `forceSimulation(nodes)`: a node missing either coordinate is placed on d3's phyllotaxis spiral (radius 10√(0.5 + i), angle i·π(3 − √5)), a fixed node starts at its fixed position and velocities start at zero; alpha is 1, alphaMin 0.001, alphaDecay 1 − 0.001^(1/300) and the velocity decay 0.4, as d3's defaults. |
+| FORCE-02 | Given each graph of the `link` cases and a `LinkForce` alone (default strength 1/min(count) and distance 30; a constant and a per-link distance and strength; 3 iterations; a self link and coincident nodes, which take d3's jiggle from the shared LCG), when the simulation ticks 1, 10 and 300 times, then every node's x, y, vx and vy and alpha equal d3's `forceLink` simulation bit for bit. |
+| FORCE-03 | Given a simulation or a force with mismatched spans (x and y of different lengths, fixed coordinates or per-node values not one per node, link sources and targets or per-link values not one per link) or a link endpoint outside the nodes, when it is created or added, then an `ArgumentException` (`ArgumentOutOfRangeException` for the endpoint) is thrown, as d3 throws "node not found". |
+| FORCE-04 | Given each graph of the `manyBody` cases and a `ManyBodyForce` alone (default strength −30 and θ 0.9; a per-node strength; θ 0 and 1.5; distanceMin 5 and distanceMax 50; coincident nodes), when the simulation ticks 1, 10 and 300 times, then the state equals d3's `forceManyBody` simulation bit for bit, the Barnes–Hut tree visited in d3-quadtree's order. |
+| FORCE-05 | Given each graph of the `center` cases and a `CenterForce` alone (the origin, (320, 180) and strength 0.5), when the simulation ticks, then the state equals d3's `forceCenter` simulation bit for bit. |
+| FORCE-06 | Given each graph of the `collide` cases and a `CollideForce` alone (radius 1 and 12, per-node radii, strength 0.7, 3 iterations, coincident nodes), when the simulation ticks, then the state equals d3's `forceCollide` simulation bit for bit, including d3's handling of coincident points (only the last added point of a quadtree leaf collides). |
+| FORCE-07 | Given each graph of the `position` cases and an `XForce` and a `YForce` (constant targets, per-node targets with NaN, which d3 gives strength 0, constant and per-node strengths), when the simulation ticks, then the state equals d3's `forceX` and `forceY` simulation bit for bit. |
+| FORCE-08 | Given the `combined` cases (the gallery's force-directed graph, link + many-body + center, on a 77-node, 254-link graph; the same with collide, x and y; fixed nodes; alphaTarget 0.3; velocity decay 0.2; alpha 0.5 with alphaDecay 0.05 and alphaMin 0.1), when the simulation ticks 1, 10 and 300 times, then every node's x, y, vx and vy and alpha equal d3's bit for bit. |
+| FORCE-09 | Given the `named` cases (a force replaced under its name, which keeps its place in the order, and a force removed), when the simulation ticks, then the state equals d3's simulation after the same `force(name, …)` calls bit for bit. |
+| FORCE-10 | Given the `run` cases (default decay, alphaDecay 0.05, alphaMin 0.1), when `Run` ticks as d3's timer would until alpha falls below alphaMin, then it returns the number of ticks d3's timer runs before its `end` event and the state equals d3's; and given an alpha target at or above alphaMin, `Run` stops at its tick limit. |
+| FORCE-11 | Given the `find` cases (points and search radii, including none, zero and one beyond every node), when `Find` searches the simulation after 300 ticks, then it returns the index of d3's `simulation.find` result, or −1 when d3 returns undefined. |
+| FORCE-12 | Given a simulation of the 77-node graph with link, many-body, center and collide forces after its first tick, when it ticks 100 more times, then no managed memory is allocated. |
